@@ -26,6 +26,7 @@
   let editingId = null;
   let selectedImage = "";
   let existingImage = "";
+  let isImageLoading = false;
 
   function readProducts() {
     try {
@@ -235,6 +236,7 @@
     const file = imageInput.files && imageInput.files[0];
     selectedImage = "";
     if (!file) {
+      isImageLoading = false;
       setPreview(editingId ? existingImage : "", editingId && existingImage ? "Current product image" : "");
       return;
     }
@@ -252,12 +254,15 @@
     }
 
     const reader = new FileReader();
+    isImageLoading = true;
     reader.addEventListener("load", () => {
+      isImageLoading = false;
       selectedImage = typeof reader.result === "string" ? reader.result : "";
       setPreview(selectedImage, file.name);
       showMessage("", "");
     });
     reader.addEventListener("error", () => {
+      isImageLoading = false;
       showMessage("The image could not be read. Please choose it again.", "error");
     });
     reader.readAsDataURL(file);
@@ -265,6 +270,10 @@
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
+    if (isImageLoading) {
+      showMessage("Wait for the image preview to finish loading.", "info");
+      return;
+    }
     nameInput.value = nameInput.value.trim();
     categoryInput.value = categoryInput.value.trim();
     form.classList.add("was-validated");
