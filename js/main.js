@@ -265,6 +265,8 @@
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
+    nameInput.value = nameInput.value.trim();
+    categoryInput.value = categoryInput.value.trim();
     form.classList.add("was-validated");
     if (!form.reportValidity()) return;
 
