@@ -294,3 +294,324 @@ p.card-title:first-of-type {
     width: 100%;
   }
 }
+
+
+/* Functional catalog layout */
+.catalog-shell {
+  padding: 1.25rem 0 4rem;
+}
+.panel {
+  max-width: 980px;
+  margin-inline: auto;
+  padding: clamp(1.25rem, 4vw, 2.75rem) !important;
+}
+.panel-heading,
+.catalog-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.panel-heading {
+  margin-bottom: 2rem;
+}
+.panel-eyebrow {
+  margin-bottom: 0.55rem;
+  letter-spacing: 0.14em;
+}
+.panel-title {
+  margin-bottom: 0.45rem;
+}
+.panel-subtitle {
+  margin: 0;
+  color: var(--muted);
+}
+.panel-mark,
+.empty-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  color: #fff;
+  background: linear-gradient(145deg, var(--signal), #6d8cff);
+  box-shadow: 0 10px 24px #1f46e033;
+  font-size: 1.35rem;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.form-grid .form-floating {
+  min-width: 0;
+}
+.form-floating > .form-control {
+  min-height: 58px;
+}
+.form-floating > textarea.form-control {
+  min-height: 110px;
+  height: 110px;
+}
+.description-field,
+.image-field {
+  grid-column: 1 / -1;
+}
+.image-field .form-label {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--ink);
+  font-weight: 600;
+}
+.image-field .form-label span {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+.image-field > .form-control {
+  min-height: 52px;
+  padding: 0.55rem 0.75rem;
+}
+.image-preview-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.image-preview-wrap[hidden],
+.empty-state[hidden] {
+  display: none !important;
+}
+.image-preview-wrap img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 1.3rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid var(--line);
+}
+.storage-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+.storage-note i {
+  margin-right: 0.35rem;
+  color: var(--signal);
+}
+.btns {
+  padding: 0;
+  flex-wrap: wrap;
+}
+.btn {
+  width: auto;
+  min-height: 42px;
+  letter-spacing: 0.01em;
+}
+.btn-primary {
+  color: #fff;
+}
+.form-message {
+  min-height: 1.2rem;
+  margin: 0.5rem 0 0;
+  font-size: 0.86rem;
+}
+.form-message.is-success {
+  color: #14724c;
+}
+.form-message.is-error {
+  color: #b42318;
+}
+.form-message.is-info {
+  color: var(--signal);
+}
+.catalog-section {
+  max-width: 1180px;
+  margin: 3rem auto 0;
+}
+.catalog-heading {
+  margin-bottom: 1rem;
+}
+.catalog-heading h2 {
+  margin: 0;
+  font-family: "Archivo", sans-serif;
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+.product-count {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+.product-count strong {
+  color: var(--ink);
+}
+.search-wrap {
+  max-width: none;
+  margin: 0 0 1.4rem;
+}
+.search-wrap > i {
+  left: 1.1rem;
+}
+#search {
+  height: 52px;
+  padding-left: 2.75rem;
+}
+.product-card {
+  border-color: #14203a14;
+}
+.product-image {
+  display: grid;
+  place-items: center;
+  height: 205px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 78% 24%, #dfe7ff 0 8%, transparent 8.5%),
+    linear-gradient(145deg, #f5f7ff, #e9edf4);
+}
+.product-image .card-img-top {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
+  border: 0;
+}
+.product-placeholder {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  border-radius: 24px;
+  background: #fff;
+  color: var(--signal);
+  box-shadow: var(--shadow);
+  font-size: 1.7rem;
+}
+.product-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+.product-badge {
+  max-width: 75%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.product-index,
+.product-date {
+  color: var(--muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+}
+.product-card .card-title {
+  margin: 0.85rem 0 0.6rem;
+  overflow-wrap: anywhere;
+}
+.product-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 0.6rem;
+  color: var(--signal);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.product-price span {
+  color: var(--muted);
+  font-family: "Inter", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+.product-description {
+  min-height: 2.7em;
+  margin: 0 0 0.85rem;
+  color: var(--muted);
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow-wrap: anywhere;
+}
+.product-actions .btn {
+  min-height: 36px;
+}
+.empty-state {
+  padding: 3rem 1rem;
+  text-align: center;
+  border: 1px dashed #14203a33;
+  border-radius: 16px;
+  background: #ffffffa8;
+}
+.empty-state .empty-icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 1rem;
+  background: #e9efff;
+  color: var(--signal);
+  box-shadow: none;
+}
+.empty-state h3 {
+  margin-bottom: 0.45rem;
+  font-family: "Archivo", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+.empty-state p {
+  margin: 0;
+  color: var(--muted);
+}
+@media (max-width: 767.98px) {
+  .catalog-shell {
+    padding-top: 0.75rem;
+  }
+  .form-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .btns {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .btns .btn {
+    width: 100%;
+  }
+  .catalog-section {
+    margin-top: 2.25rem;
+  }
+}
+@media (max-width: 575.98px) {
+  .panel-mark {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    font-size: 1rem;
+  }
+  .form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .description-field,
+  .image-field {
+    grid-column: auto;
+  }
+  .product-image {
+    height: 190px;
+  }
+}
