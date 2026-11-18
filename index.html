@@ -3,99 +3,102 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#e9edf4" />
     <title>CRUD System — Product Catalog</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./css/bootstrap.min.css" />
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <section class="my-4 my-md-5">
-      <div class="container panel py-4 py-md-5 px-4 px-md-5">
-        <p class="panel-eyebrow">Product record</p>
-        <h1 class="panel-title">CRUD SYSTEM</h1>
-
-        <div>
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="productName" placeholder=" " />
-            <label for="productName">productName</label>
+    <main class="catalog-shell">
+      <section class="container panel py-4 py-md-5 px-4 px-md-5" aria-labelledby="pageTitle">
+        <div class="panel-heading">
+          <div>
+            <p class="panel-eyebrow">Product management</p>
+            <h1 class="panel-title" id="pageTitle">CRUD SYSTEM</h1>
+            <p class="panel-subtitle">Create, organize, and update your product catalog.</p>
           </div>
-
-          <div class="form-floating mb-3">
-            <input type="number" class="form-control" id="productPrice" placeholder=" " />
-            <label for="productPrice">productPrice</label>
-          </div>
-
-          <div class="form-floating mb-3">
-            <input type="text" list="cat" class="form-control" id="productCategory" placeholder=" " />
-            <label for="productCategory">productCategory</label>
-
-            <datalist id="cat">
-              <option value="tv" />
-              <option value="mobile" />
-              <option value="screens" />
-              <option value="electronic" />
-            </datalist>
-          </div>
-
-          <div class="form-floating mb-3">
-            <textarea class="form-control" id="productDescription" placeholder=" "></textarea>
-            <label for="productDescription">productDescription</label>
-          </div>
-
-          <div class="form-floating mb-3">
-            <input type="file" class="form-control" id="productImg" placeholder=" " />
-            <label for="productImg">productImg</label>
-          </div>
-
-          <div class="btns">
-            <button class="btn btn-sm btn-primary" id="btnAdd">Add Product</button>
-            <button class="btn btn-sm btn-warning d-none" id="btnUpdate">Update Product</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="container">
-        <div class="search-wrap">
-          <i class="fas fa-magnifying-glass"></i>
-          <input id="search" type="search" class="form-control" placeholder="Search By Name.." />
+          <span class="panel-mark" aria-hidden="true"><i class="fa-solid fa-boxes-stacked"></i></span>
         </div>
 
-        <div class="row g-4" id="rowData">
-          <div class="col-md-3">
-            <div class="card h-100">
-              <img class="card-img-top" height="200px" src="./images/1.jpg" alt="title" />
-              <div class="card-body">
-                <span class="badge text-white">Index:</span>
-                <h4 class="card-title">ProductName:</h4>
-                <p class="card-title">ProductPrice:</p>
-                <p class="card-title">ProductCategory:</p>
-                <p class="card-title">ProductDescription:</p>
-                <p class="card-title">Date:</p>
-              </div>
+        <form id="productForm" novalidate>
+          <div class="form-grid">
+            <div class="form-floating">
+              <input type="text" class="form-control" id="productName" placeholder=" " required minlength="2" maxlength="80" autocomplete="off" />
+              <label for="productName">Product name</label>
+              <div class="invalid-feedback">Enter a product name (at least 2 characters).</div>
+            </div>
 
-              <div class="card-footer text-center">
-                <button class="btn btn-outline-danger btn-sm" aria-label="Delete product">
-                  <i class="fas fa-trash"></i>
-                </button>
-                <button class="btn btn-outline-warning btn-sm" aria-label="Edit product">
-                  <i class="fas fa-edit"></i>
-                </button>
+            <div class="form-floating">
+              <input type="number" class="form-control" id="productPrice" placeholder=" " required min="0.01" step="0.01" inputmode="decimal" />
+              <label for="productPrice">Price</label>
+              <div class="invalid-feedback">Enter a price greater than zero.</div>
+            </div>
+
+            <div class="form-floating">
+              <input type="text" list="categories" class="form-control" id="productCategory" placeholder=" " required maxlength="40" autocomplete="off" />
+              <label for="productCategory">Category</label>
+              <datalist id="categories">
+                <option value="Electronics"></option>
+                <option value="Mobile"></option>
+                <option value="Screens"></option>
+                <option value="Accessories"></option>
+              </datalist>
+              <div class="invalid-feedback">Add a category for this product.</div>
+            </div>
+
+            <div class="form-floating description-field">
+              <textarea class="form-control" id="productDescription" placeholder=" " maxlength="300"></textarea>
+              <label for="productDescription">Description (optional)</label>
+            </div>
+
+            <div class="image-field">
+              <label for="productImg" class="form-label">Product image <span>(optional, max 500 KB)</span></label>
+              <input type="file" class="form-control" id="productImg" accept="image/png,image/jpeg,image/webp,image/gif" />
+              <div class="image-preview-wrap" id="imagePreviewWrap" hidden>
+                <img id="imagePreview" alt="Selected product preview" />
+                <span id="imagePreviewName"></span>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <script src="./js/bootstrap.bundle.min.js"></script>
+          <div class="form-footer">
+            <p class="storage-note"><i class="fa-solid fa-hard-drive" aria-hidden="true"></i> Products are saved in this browser on this device.</p>
+            <div class="btns">
+              <button class="btn btn-primary" id="btnAdd" type="submit"><i class="fa-solid fa-plus" aria-hidden="true"></i> Add product</button>
+              <button class="btn btn-warning d-none" id="btnUpdate" type="submit"><i class="fa-solid fa-check" aria-hidden="true"></i> Save changes</button>
+              <button class="btn btn-light d-none" id="btnCancel" type="button">Cancel</button>
+            </div>
+          </div>
+          <p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="container catalog-section" aria-labelledby="catalogTitle">
+        <div class="catalog-heading">
+          <div>
+            <p class="panel-eyebrow">Your inventory</p>
+            <h2 id="catalogTitle">Product catalog</h2>
+          </div>
+          <span class="product-count"><strong id="productCount">0</strong> products</span>
+        </div>
+
+        <div class="search-wrap">
+          <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+          <input id="search" type="search" class="form-control" placeholder="Search by name, category, or description…" aria-label="Search products" autocomplete="off" />
+        </div>
+
+        <div class="row g-4" id="rowData" aria-live="polite"></div>
+        <div class="empty-state" id="emptyState">
+          <span class="empty-icon"><i class="fa-solid fa-box-open" aria-hidden="true"></i></span>
+          <h3 id="emptyTitle">Your catalog is ready</h3>
+          <p id="emptyDescription">Add your first product using the form above.</p>
+        </div>
+      </section>
+    </main>
 
     <script src="./js/main.js"></script>
   </body>
